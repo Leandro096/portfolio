@@ -1,0 +1,88 @@
+---
+/**
+ * Release log. Reads like CI output and plays once on load.
+ * Fully data-driven (profile.json -> pipeline). Stage types: "step" and "parallel".
+ * The sequence lives in scripts/pipeline.ts and works for any number of stages.
+ */
+import { tr, ui, type Lang } from '../../i18n';
+import type { Pipeline } from '../../lib/content';
+
+interface Props { lang: Lang; pipeline: Pipeline }
+const { lang, pipeline } = Astro.props;
+const t = ui[lang];
+---
+<figure class="log" id="pipe" aria-label={t.pipelineAria} data-label-running={t.running} data-label-done={t.deployed}>
+  <figcaption class="log__bar">
+    <span class="log__title">{tr(pipeline.title, lang)}</span>
+    <span class="log__status" id="pipeBadge" data-state="running">{t.running}</span>
+    <span class="sr-only" id="pipeLive" role="status"></span>
+  </figcaption>
+
+  <ol class="rows">
+    {pipeline.stages.map((s) =>
+      s.type === 'step' ? (
+        <li class="row" data-stage="step">
+          <span class="sq" aria-hidden="true"></span>
+          <span class="row__name">{tr(s.name, lang)}</span>
+          {s.meta && <span class="row__meta">{tr(s.meta, lang)}</span>}
+        </li>
+      ) : (
+        <li class="row row--group" data-stage="parallel">
+          <span class="row__label">{tr(s.label, lang)}</span>
+          <ul class="jobs">
+            {s.jobs.map((j) => (
+              <li class="job"><span class="sq" aria-hidden="true"></span>{tr(j, lang)}</li>
+            ))}
+          </ul>
+        </li>
+      ),
+    )}
+  </ol>
+
+  <div class="log__foot">
+    <p class="result" id="pipeResult">
+      <strong>{pipeline.result.value}</strong>
+      <span>{tr(pipeline.result.label, lang)}</span>
+    </p>
+    <button class="replay" id="replay" type="button">{t.replay}</button>
+  </div>
+</figure>
+
+<style>
+  .log { margin: 0; border: 1px solid var(--line-strong); border-radius: var(--r-md); background: var(--surface); font-family: var(--font-mono); font-size: var(--text-sm); }
+  .log__bar { display: flex; justify-content: space-between; gap: var(--space-4); padding: .85rem 1.1rem; border-bottom: 1px solid var(--line); }
+  .log__title { color: var(--muted); }
+  .log__status { color: var(--accent); }
+  .log__status[data-state="done"] { color: var(--ok); }
+
+  .rows { display: grid; padding: var(--space-2) 0; }
+  .row { display: flex; align-items: baseline; gap: .8rem; padding: .6rem 1.1rem; color: var(--muted); }
+  .row.is-active, .row.is-done, .row.is-live { color: var(--text); }
+  .row__meta { margin-left: auto; color: var(--muted); text-align: right; }
+  .row--group { display: block; }
+  .row__label { display: block; margin-bottom: var(--space-2); }
+  .jobs { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
+  .job { display: inline-flex; align-items: baseline; gap: .6rem; color: var(--muted); }
+  .job.is-active, .job.is-done { color: var(--text); }
+
+  /* status marker: the logo's cursor, as a square. outline = waiting, blinking = running, filled = done */
+  .sq { flex: none; align-self: center; width: 9px; height: 11px; border: 1px solid var(--line-strong); border-radius: 1px; }
+  .is-active > .sq { background: var(--accent); border-color: var(--accent); animation: blink 1s steps(1, end) infinite; }
+  .is-done > .sq { background: var(--ok); border-color: var(--ok); animation: none; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .log__foot { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); padding: 1rem 1.1rem 1.1rem; border-top: 1px solid var(--line); }
+  .result { opacity: 0; transition: opacity .4s; }
+  .result.is-in { opacity: 1; }
+  .result strong { display: block; font-size: 2.25rem; line-height: 1; font-weight: 500; letter-spacing: -.04em; color: var(--ok); }
+  .result span { display: block; margin-top: .4rem; color: var(--muted); }
+  @media (min-width: 1100px) and (max-height: 760px) {
+    .log__bar { padding: .6rem 1.1rem; }
+    .rows { padding: var(--space-1) 0; }
+    .row { padding-block: .35rem; }
+    .log__foot { padding-block: .7rem .8rem; }
+    .result strong { font-size: 1.75rem; }
+  }
+  .replay { padding: .4rem .2rem; border: 0; background: none; font: inherit; color: var(--muted); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--line-strong); }
+  .replay:hover { color: var(--text); }
+</style>

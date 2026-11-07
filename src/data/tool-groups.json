@@ -1,0 +1,6 @@
+[
+  { "id": "frontend", "order": 1, "title": { "en": "Frontend", "es": "Frontend" } },
+  { "id": "backend", "order": 2, "title": { "en": "Backend and data", "es": "Backend y datos" } },
+  { "id": "delivery", "order": 3, "title": { "en": "Delivery and cloud", "es": "Entrega y nube" } },
+  { "id": "practice", "order": 4, "title": { "en": "How I work", "es": "Cómo trabajo" } }
+]

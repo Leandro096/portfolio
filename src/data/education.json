@@ -1,0 +1,26 @@
+[
+  {
+    "id": "uasd",
+    "order": 1,
+    "title": { "en": "Bachelor's in Computer Science", "es": "Licenciatura en Informática" },
+    "description": {
+      "en": "Universidad Autónoma de Santo Domingo. Semester 7 of 8.",
+      "es": "Universidad Autónoma de Santo Domingo. Semestre 7 de 8."
+    },
+    "progress": 87.5
+  },
+  {
+    "id": "talendig",
+    "order": 2,
+    "title": { "en": "Fullstack Development Masterclass", "es": "Masterclass de Desarrollo Fullstack" },
+    "description": { "en": "Talendig, 2023. Completed.", "es": "Talendig, 2023. Completado." },
+    "progress": 100
+  },
+  {
+    "id": "udemy-react",
+    "order": 3,
+    "title": { "en": "Fullstack Development with React + Hooks", "es": "Desarrollo Fullstack con React + Hooks" },
+    "description": { "en": "Udemy. 90% complete.", "es": "Udemy. 90% completado." },
+    "progress": 90
+  }
+]

@@ -1,0 +1,26 @@
+/* ==========================================================
+   FONTS
+   Self-hosted (latin covers English and Spanish) and preloaded from Layout.astro, so the real
+   face is usually ready at first paint. The "Fallback" faces are Arial / Courier New rescaled to
+   the real fonts' metrics: if a face does arrive late, the swap does not move the layout.
+   ========================================================== */
+@font-face {
+  font-family: "Space Grotesk Variable"; font-style: normal; font-weight: 300 700; font-display: swap;
+  src: url("../assets/fonts/space-grotesk-latin-wght-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono Variable"; font-style: normal; font-weight: 100 800; font-display: swap;
+  src: url("../assets/fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Space Grotesk Fallback"; font-weight: 400; src: local("Arial");
+  size-adjust: 110.55%; ascent-override: 89%; descent-override: 26.4%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Space Grotesk Fallback"; font-weight: 700; src: local("Arial Bold"), local("Arial-BoldMT");
+  size-adjust: 102%; ascent-override: 96.5%; descent-override: 28.6%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: "JetBrains Mono Fallback"; src: local("Courier New");
+  size-adjust: 100%; ascent-override: 102%; descent-override: 30%; line-gap-override: 0%;
+}

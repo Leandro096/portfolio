@@ -1,0 +1,53 @@
+---
+import Wordmark from "../ui/Wordmark.astro";
+import { ui, type Lang } from "../../i18n";
+import type { Profile } from "../../lib/content";
+interface Props {
+  lang: Lang;
+  profile: Profile;
+}
+const { lang, profile } = Astro.props;
+const t = ui[lang];
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="sign">
+      <Wordmark size="sm" />
+      <span
+        >© <span id="year">{new Date().getFullYear()}</span>
+        {profile.name}. {t.rights}</span
+      >
+    </p>
+    <a class="to-top" href="#top">{t.backToTop}</a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding-block: var(--space-7) var(--space-8);
+    color: var(--muted);
+    font-size: var(--text-md);
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .sign {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.8rem;
+  }
+  .to-top {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .to-top:hover {
+    color: var(--accent);
+  }
+</style>

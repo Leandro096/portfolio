@@ -1,0 +1,59 @@
+---
+import { asset } from "../../lib/assets";
+interface Props {
+  logo: string;
+  dark?: boolean;
+  size?: number;
+}
+const { logo, dark = false, size = 18 } = Astro.props;
+const base = asset("logos/");
+---
+
+<span class="tl" style={`--s:${size}px`} aria-hidden="true">
+  <img
+    class="tl__img tl__img--light"
+    src={`${base}${logo}.svg`}
+    alt=""
+    width={size}
+    height={size}
+    loading="lazy"
+    decoding="async"
+  />
+  {
+    dark && (
+      <img
+        class="tl__img tl__img--dark"
+        src={`${base}${logo}-dark.svg`}
+        alt=""
+        width={size}
+        height={size}
+        loading="lazy"
+        decoding="async"
+      />
+    )
+  }
+</span>
+
+<style>
+  .tl {
+    display: inline-flex;
+    flex: none;
+    width: var(--s);
+    height: var(--s);
+  }
+  .tl__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .tl__img--dark {
+    display: none;
+  }
+  :global(html[data-theme="dark"]) .tl__img--dark {
+    display: block;
+  }
+  :global(html[data-theme="dark"]) .tl__img--dark ~ .tl__img--light,
+  :global(html[data-theme="dark"]) .tl:has(.tl__img--dark) .tl__img--light {
+    display: none;
+  }
+</style>

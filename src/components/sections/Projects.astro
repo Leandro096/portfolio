@@ -1,0 +1,26 @@
+---
+import SectionHead from '../ui/SectionHead.astro';
+import ProjectCard from './ProjectCard.astro';
+import { ui, type Lang } from '../../i18n';
+import { getProjects, getToolMeta, toolItems } from '../../lib/content';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+const [projects, names] = await Promise.all([getProjects(), getToolMeta(lang)]);
+---
+<section class="section" id="work">
+  <div class="container split">
+    <SectionHead title={t.workTitle} intro={t.workIntro} />
+    <div class="cases stack-divided">
+      {projects.map((p) => (
+        <ProjectCard lang={lang} project={p.data} stack={toolItems(p.data.stack, names)} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cases { display: grid; }
+  .cases { --rule-gap: var(--space-block); }
+</style>

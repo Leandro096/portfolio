@@ -1,0 +1,36 @@
+[
+  { "id": "react", "group": "frontend", "order": 1, "name": "React", "logo": "react", "logoDark": true },
+  { "id": "nextjs", "group": "frontend", "order": 2, "name": "Next.js", "logo": "nextjs" },
+  { "id": "bootstrap", "group": "frontend", "order": 3, "name": "Bootstrap 4", "logo": "bootstrap" },
+  { "id": "javascript", "group": "frontend", "order": 5, "name": "JavaScript (ES6+)", "logo": "javascript" },
+  { "id": "typescript", "group": "frontend", "order": 4, "name": "TypeScript", "logo": "typescript" },
+  { "id": "sass", "group": "frontend", "order": 6, "name": "SASS", "logo": "sass" },
+  { "id": "design-systems", "concept": true, "group": "frontend", "order": 7, "name": { "en": "Design systems and reusable components", "es": "Sistemas de diseño y componentes reutilizables" } },
+  { "id": "web-performance", "concept": true, "group": "frontend", "order": 8, "name": { "en": "Web performance optimization", "es": "Optimización del rendimiento web" } },
+  { "id": "cross-browser", "concept": true, "group": "frontend", "order": 9, "name": { "en": "Cross-browser compatibility", "es": "Compatibilidad entre navegadores" } },
+
+  { "id": "aspnet-core", "group": "backend", "order": 1, "name": "ASP.NET Core / .NET", "logo": "aspnet-core" },
+  { "id": "csharp", "group": "backend", "order": 1.5, "name": "C#" },
+  { "id": "nodejs", "group": "backend", "order": 3, "name": "Node.js", "logo": "nodejs" },
+  { "id": "python", "group": "backend", "order": 3.5, "name": "Python" },
+  { "id": "expressjs", "group": "backend", "order": 2, "name": "ExpressJS", "logo": "expressjs", "logoDark": true },
+  { "id": "rest-apis", "concept": true, "group": "backend", "order": 6, "name": { "en": "RESTful APIs", "es": "APIs RESTful" } },
+  { "id": "mssql", "group": "backend", "order": 4, "name": "SQL / MSSQL", "logo": "mssql" },
+  { "id": "db-modeling", "concept": true, "group": "backend", "order": 7, "name": { "en": "3NF database modeling", "es": "Modelado de bases de datos 3NF" } },
+  { "id": "mongodb", "group": "backend", "order": 5, "name": "NoSQL / MongoDB", "logo": "mongodb", "logoDark": true },
+
+  { "id": "cicd", "concept": true, "group": "delivery", "order": 8, "name": "CI/CD", "logo": "cicd", "logoDark": true },
+  { "id": "azure-devops", "group": "delivery", "order": 1, "name": "Azure DevOps", "logo": "azure-devops" },
+  { "id": "github", "group": "delivery", "order": 2, "name": "GitHub", "logo": "github", "logoDark": true },
+  { "id": "github-actions", "group": "delivery", "order": 3, "name": "GitHub Actions", "logo": "github-actions" },
+  { "id": "aws", "group": "delivery", "order": 4, "name": "AWS", "logo": "aws", "logoDark": true },
+  { "id": "datadog", "group": "delivery", "order": 5, "name": { "en": "Datadog and observability", "es": "Datadog y observabilidad" }, "logo": "datadog" },
+  { "id": "testing", "concept": true, "group": "delivery", "order": 9, "name": { "en": "Testing", "es": "Pruebas automatizadas" }, "logo": "testing", "logoDark": true },
+  { "id": "minio", "group": "delivery", "order": 6, "name": "MinIO", "logo": "minio" },
+  { "id": "rust", "group": "delivery", "order": 7, "name": { "en": "Rust (targeted use)", "es": "Rust (uso puntual)" }, "logo": "rust", "logoDark": true },
+
+  { "id": "leadership", "group": "practice", "order": 1, "name": { "en": "Technical leadership", "es": "Liderazgo técnico" } },
+  { "id": "remote", "group": "practice", "order": 3, "name": { "en": "Remote, cross-functional collaboration", "es": "Colaboración remota y multifuncional" } },
+  { "id": "autonomy", "group": "practice", "order": 4, "name": { "en": "Autonomous ownership", "es": "Autonomía y responsabilidad sobre el trabajo" } },
+  { "id": "bilingual", "group": "practice", "order": 5, "name": { "en": "English and Spanish", "es": "Inglés y español" } }
+]

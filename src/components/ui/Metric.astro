@@ -1,0 +1,46 @@
+---
+import { formatNumber } from "../../lib/format";
+interface Props {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  label: string;
+  size?: "lg" | "sm";
+}
+const { value, prefix = "", suffix = "", label, size = "lg" } = Astro.props;
+const final = `${prefix}${formatNumber(value)}${suffix}`;
+---
+
+<div>
+  <div class:list={["metric", `metric--${size}`]}>
+    <span
+      class="count"
+      data-to={value}
+      data-prefix={prefix}
+      data-suffix={suffix}>{final}</span
+    >
+  </div>
+  <p class="metric-label">{label}</p>
+</div>
+
+<style>
+  .metric {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    line-height: 0.95;
+  }
+  .metric--lg {
+    font-size: clamp(4rem, 7vw, 5.5rem);
+  }
+  .metric--sm {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+  }
+  .metric-label {
+    margin-top: 0.6rem;
+    color: var(--muted);
+    max-width: 24ch;
+  }
+</style>

@@ -1,0 +1,43 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  progress: number;
+  progressLabel: string;
+}
+const { title, description, progress, progressLabel } = Astro.props;
+---
+
+<div class="edu__item">
+  <div>
+    <h4>{title}</h4>
+    <p>{description}</p>
+  </div>
+  <p class="edu__pct">
+    <span aria-hidden="true">{Math.round(progress)}%</span><span class="sr-only"
+      >{progressLabel}</span>
+  </p>
+</div>
+
+<style>
+  .edu__item {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-5);
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .edu__item p {
+    color: var(--muted);
+    font-size: var(--text-md);
+    margin-top: 0.2rem;
+    max-width: 56ch;
+  }
+  .edu__item .edu__pct {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    color: var(--text);
+  }
+</style>

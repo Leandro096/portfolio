@@ -1,0 +1,78 @@
+---
+/**
+ * One case study. Works with ANY project entry: outcomes, metrics, flow and
+ * links are all optional. 1 metric = large number, 2+ = compact list.
+ */
+import { Iconify } from '../iconify';
+import Chips from '../ui/Chips.astro';
+import Metric from '../ui/Metric.astro';
+import DefList from '../ui/DefList.astro';
+import FlowDiagram from '../ui/FlowDiagram.astro';
+import { tr, ui, type Lang } from '../../i18n';
+import type { ToolItem } from '../../lib/content';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  lang: Lang;
+  project: CollectionEntry<'projects'>['data'];
+  stack: ToolItem[];     // resolved tools (name + logo)
+}
+const { lang, project: p, stack } = Astro.props;
+const t = ui[lang];
+const size = p.metrics.length > 1 ? 'sm' : 'lg';
+---
+<article class="case">
+  <h3>{tr(p.title, lang)}</h3>
+  <p class="case__org">{tr(p.organization, lang)}, {tr(p.role, lang)}</p>
+
+  <div class="case__cols">
+    <div class="case__main">
+      <p class="case__summary">{tr(p.summary, lang)}</p>
+
+      {p.outcomes.length > 0 && (
+        <DefList variant="outcomes" items={p.outcomes.map((o) => ({ label: tr(o.lead, lang), value: tr(o.text, lang) }))} />
+      )}
+
+      {p.flow && (
+        <FlowDiagram
+          label={t.flowAria}
+          stages={p.flow.map((stage) => stage.map((n) => ({ title: tr(n.title, lang), note: n.note ? tr(n.note, lang) : undefined })))}
+        />
+      )}
+
+      {p.links.length > 0 && (
+        <div class="case__links">
+          {p.links.map((l) => (
+            <a class="btn btn--ghost" href={l.url} target="_blank" rel="noopener noreferrer">
+              {tr(l.label, lang)} <Iconify icon="solar:arrow-right-up-linear" />
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <aside class="case__aside" data-reveal>
+      {p.metrics.length > 0 && (
+        <div class="metrics">
+          {p.metrics.map((m) => (
+            <Metric value={m.value} prefix={m.prefix} suffix={m.suffix} label={tr(m.label, lang)} size={size} />
+          ))}
+        </div>
+      )}
+      <Chips items={stack} label={t.technologies} />
+    </aside>
+  </div>
+</article>
+
+<style>
+  h3 { font-size: clamp(1.6rem, 2vw + .8rem, 2.4rem); letter-spacing: -.035em; max-width: 24ch; }
+  .case__org { margin-top: .6rem; color: var(--muted); }
+  .case__cols { display: grid; gap: var(--space-6) var(--space-8); margin-top: clamp(1.5rem, 3vw, 2.25rem); }
+  @media (min-width: 1100px) { .case__cols { grid-template-columns: minmax(0, 1fr) 16rem; } }
+
+  .case__summary { max-width: 60ch; font-size: var(--text-xl); }
+  .case__links { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: 1.75rem; }
+
+  .case__aside { display: grid; align-content: start; gap: 1.75rem; }
+  .metrics { display: grid; gap: var(--space-5); }
+</style>

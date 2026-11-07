@@ -1,0 +1,54 @@
+---
+import { languages, langs, homePath, ui, type Lang } from "../../i18n";
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<div class="lang" role="group" aria-label={t.language}>
+  {
+    langs.map((l) => (
+      <a
+        class="lang__btn"
+        href={homePath(l)}
+        hreflang={l}
+        lang={l}
+        data-lang={l}
+        aria-label={languages[l]}
+        aria-current={l === lang ? "true" : undefined}
+      >
+        {l.toUpperCase()}
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .lang {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+  .lang__btn {
+    display: grid;
+    place-items: center;
+    min-width: 32px;
+    min-height: 40px;
+    text-decoration: none;
+    color: var(--muted);
+  }
+  .lang__btn:hover {
+    color: var(--text);
+  }
+  .lang__btn[aria-current="true"] {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+  }
+</style>

@@ -1,0 +1,40 @@
+/* ==========================================================
+   SHARED COMPONENTS: buttons, toast, reduced-motion (keep last)
+   ========================================================== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+  min-height: 46px; padding: .7rem 1.25rem;
+  border-radius: var(--r-md); border: 1px solid transparent;
+  font-weight: 600; font-size: 1rem; text-decoration: none; line-height: 1.2;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn--primary { background: var(--accent); color: var(--on-accent); }
+.btn--ghost { border-color: var(--line-strong); background: transparent; color: var(--text); }
+.btn--ghost:hover { border-color: var(--text); }
+.btn--wa { background: var(--wa); color: #fff; }
+.btn--wa:hover { background: var(--wa-hover); }
+
+.toast {
+  position: fixed; left: 50%; bottom: max(1.25rem, env(safe-area-inset-bottom)); z-index: 95;
+  transform: translate(-50%, 140%); opacity: 0;
+  background: var(--text); color: var(--bg); padding: .75rem 1.1rem; border-radius: var(--r-md); font-weight: 600; font-size: var(--text-md);
+  transition: transform .3s var(--ease), opacity .3s var(--ease); pointer-events: none;
+}
+.toast.is-show { transform: translate(-50%, 0); opacity: 1; }
+
+.icon-btn {
+  display: grid; place-items: center; width: 40px; height: 40px;
+  border-radius: var(--r-md); border: 1px solid var(--line-strong); background: transparent;
+  transition: border-color .15s;
+}
+.icon-btn:hover { border-color: var(--text); }
+.icon-btn svg { width: 20px; height: 20px; }
+
+/* Inline text link: quiet underline that turns accent on hover. */
+.link { text-underline-offset: 4px; text-decoration-color: var(--line-strong); }
+.link:hover { text-decoration-color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; animation-delay: 0ms !important; transition-duration: .001ms !important; transition-delay: 0ms !important; }
+}

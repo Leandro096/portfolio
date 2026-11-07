@@ -1,0 +1,31 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { allIconNames, getIcon, type IconifyName } from "./register-icons";
+
+interface Props extends Omit<HTMLAttributes<"svg">, "width" | "height"> {
+  icon: IconifyName;
+  width?: number | string;
+  height?: number | string;
+}
+
+const { icon, width = 20, height, class: className, ...rest } = Astro.props;
+
+if (!allIconNames.includes(icon)) {
+  throw new Error(
+    `Icon "${icon}" is not registered. Add it to src/components/iconify/icon-sets.ts`,
+  );
+}
+
+const { body, viewBox } = getIcon(icon)!;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox={viewBox}
+  width={width}
+  height={height ?? width}
+  class:list={["iconify", className]}
+  aria-hidden="true"
+  {...rest}
+  set:html={body}
+/>

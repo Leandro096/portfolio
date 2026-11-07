@@ -1,0 +1,39 @@
+---
+import ToolLogo from "./ToolLogo.astro";
+import type { ToolItem } from "../../lib/content";
+interface Props {
+  items: ToolItem[];
+  label?: string;
+}
+const { items, label } = Astro.props;
+---
+
+<ul class="chips" aria-label={label}>
+  {
+    items.map((item) => (
+      <li class="chip">
+        {item.logo && (
+          <ToolLogo logo={item.logo} dark={item.logoDark} size={16} />
+        )}
+        {item.name}
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.1rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+</style>

@@ -1,0 +1,46 @@
+{
+  "title": {
+    "en": "Full-Stack Developer | ASP.NET Core · React · TypeScript · Azure DevOps",
+    "es": "Desarrollador Full-Stack | ASP.NET Core · React · TypeScript · Azure DevOps"
+  },
+  "country": { "en": "Dominican Republic", "es": "República Dominicana" },
+  "headings": {
+    "summary": { "en": "Summary", "es": "Resumen" },
+    "experience": { "en": "Professional Experience", "es": "Experiencia Profesional" },
+    "education": { "en": "Education", "es": "Educación" },
+    "skills": { "en": "Skills", "es": "Habilidades" }
+  },
+  "present": { "en": "Present", "es": "Actualidad" },
+  "stackLabel": { "en": "Stack", "es": "Stack" },
+  "docTitle": { "en": "Leandro J. Garcia - CV (English)", "es": "Leandro J. Garcia - CV (Español)" },
+  "summary": {
+    "en": "Full-Stack Developer with 4+ years of experience building production software with ASP.NET Core&nbsp;/&nbsp;.NET, React, TypeScript and SQL Server. Built RESTful APIs and React front ends, designed CI/CD pipelines that cut errors and deployment times by more than 73%, and tuned database performance for a national government platform. Also delivered freelance systems serving 10,000+ clients per day. Communicates in professional English. Available for remote, full-time work as an independent contractor from the Dominican Republic.",
+    "es": "Desarrollador Full-Stack con más de 4 años de experiencia construyendo software de producción con ASP.NET Core&nbsp;/&nbsp;.NET, React, TypeScript y SQL Server. Construí APIs RESTful e interfaces en React, diseñé pipelines de CI/CD que redujeron los errores y los tiempos de despliegue en más de un 73% y optimicé el rendimiento de bases de datos de una plataforma gubernamental nacional. También entregué sistemas freelance que atienden a más de 10,000 clientes por día. Me comunico en inglés profesional. Disponible para trabajo remoto a tiempo completo como contratista independiente desde la República Dominicana."
+  },
+  "stackLines": {
+    "freelance": "ReactJS, ExpressJS, Node.js, MongoDB, .NET, MinIO, Azure DevOps",
+    "health-pastoral": "ReactJS, ExpressJS, MongoDB, SASS, GitHub"
+  },
+  "education": [
+    {
+      "en": { "bold": "B.S. in Computer Science (Licenciatura en Informática), UASD", "rest": "In progress, semester 7 of 8" },
+      "es": { "bold": "Licenciatura en Informática, UASD", "rest": "En curso, semestre 7 de 8" }
+    },
+    {
+      "en": { "bold": "Talendig Masterclass – Fullstack Development", "rest": "Completed, 2023" },
+      "es": { "bold": "Talendig Masterclass – Desarrollo Fullstack", "rest": "Completado, 2023" }
+    },
+    {
+      "en": { "bold": "Udemy – Fullstack React + Hooks", "rest": "In progress" },
+      "es": { "bold": "Udemy – Fullstack React + Hooks", "rest": "En curso" }
+    }
+  ],
+  "skills": [
+    { "label": { "en": "Backend", "es": "Backend" }, "value": { "en": "ASP.NET Core&nbsp;/&nbsp;.NET, C#, RESTful APIs, Node.js, Express", "es": "ASP.NET Core&nbsp;/&nbsp;.NET, C#, APIs RESTful, Node.js, Express" } },
+    { "label": { "en": "Frontend", "es": "Frontend" }, "value": { "en": "React, TypeScript, JavaScript, Next.js, SASS, Bootstrap, design systems", "es": "React, TypeScript, JavaScript, Next.js, SASS, Bootstrap, sistemas de diseño" } },
+    { "label": { "en": "Databases", "es": "Bases de datos" }, "value": { "en": "MSSQL, SQL, MongoDB (NoSQL)", "es": "MSSQL, SQL, MongoDB (NoSQL)" } },
+    { "label": { "en": "DevOps & Cloud", "es": "DevOps y Nube" }, "value": { "en": "Azure DevOps, CI/CD, GitHub Actions, AWS, Datadog, MinIO", "es": "Azure DevOps, CI/CD, GitHub Actions, AWS, Datadog, MinIO" } },
+    { "label": { "en": "Other", "es": "Otros" }, "value": { "en": "Python, Rust (targeted use), testing, web performance", "es": "Python, Rust (uso puntual), pruebas, rendimiento web" } },
+    { "label": { "en": "Languages", "es": "Idiomas" }, "value": { "en": "English (professional), Spanish (native)", "es": "Inglés (profesional), Español (nativo)" } }
+  ]
+}

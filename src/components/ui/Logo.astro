@@ -1,0 +1,47 @@
+---
+interface Props {
+  size?: number;
+  blink?: boolean;
+  class?: string;
+}
+const { size = 36, blink = false, class: cls = "" } = Astro.props;
+---
+
+<svg
+  class:list={["logo", cls, { "logo--blink": blink }]}
+  width={size}
+  height={size}
+  viewBox="40 36 120 130"
+  aria-hidden="true"
+  focusable="false"
+>
+  <path
+    d="M55 46 H87 V122 H107 V154 H55 Z"
+    fill="var(--logo-l)"
+    stroke="var(--logo-l)"
+    stroke-width="6"
+    stroke-linejoin="round"></path>
+  <rect
+    class="logo__cursor"
+    x="119"
+    y="122"
+    width="26"
+    height="32"
+    rx="4"
+    fill="var(--logo-cursor)"></rect>
+</svg>
+
+<style>
+  .logo {
+    flex: none;
+    overflow: visible;
+  }
+  .logo--blink .logo__cursor {
+    animation: cursor 1.1s steps(1, end) 0.6s 4;
+  }
+  @keyframes cursor {
+    50% {
+      opacity: 0;
+    }
+  }
+</style>

@@ -1,0 +1,55 @@
+{
+  "main": {
+    "name": "Leandro J. Garcia",
+    "role": { "en": "Full-Stack Developer", "es": "Desarrollador Full-Stack" },
+    "description": {
+      "en": "Full-stack developer (React, TypeScript, ASP.NET Core). I build institutional platforms and cut delivery time. Available for remote work in AST / EST / CST.",
+      "es": "Desarrollador full-stack (React, TypeScript, ASP.NET Core). Construyo plataformas institucionales y reduzco los tiempos de entrega. Disponible para trabajo remoto en AST / EST / CST."
+    },
+    "headline": {
+      "en": "Full-stack developer who ships platforms institutions rely on.",
+      "es": "Desarrollador full-stack que entrega plataformas en las que las instituciones confían."
+    },
+    "lead": {
+      "en": "I have 4+ years building production software with ASP.NET Core, React, TypeScript and SQL Server. I designed CI/CD pipelines that cut errors and deployment times by more than 73%, tuned database performance for a national government platform, and delivered freelance systems serving 10,000+ clients per day.",
+      "es": "Tengo más de 4 años construyendo software de producción con ASP.NET Core, React, TypeScript y SQL Server. Diseñé pipelines de CI/CD que redujeron los errores y los tiempos de despliegue en más de un 73%, optimicé el rendimiento de bases de datos de una plataforma gubernamental nacional y entregué sistemas freelance que atienden a más de 10,000 clientes por día."
+    },
+    "location": { "en": "Santo Domingo, Dominican Republic", "es": "Santo Domingo, República Dominicana" },
+    "spokenLanguages": { "en": "Native Spanish, professional English", "es": "Español nativo, inglés profesional" },
+    "email": "lic.leandrogarcia96@gmail.com",
+    "phone": "+1 (809) 440-5962",
+    "whatsapp": "18094405962",
+    "whatsappMessage": {
+      "en": "Hi Leandro, I saw your portfolio and would like to talk.",
+      "es": "Hola Leandro, vi tu portafolio y me gustaría conversar."
+    },
+    "timezone": "America/Santo_Domingo",
+    "timezoneLabel": "AST",
+    "availableTimezones": "AST / EST / CST",
+    "cv": {
+      "en": "/CV_Leandro_Garcia_-_English.pdf",
+      "es": "/CV_Leandro_Garcia_-_Espanol.pdf"
+    },
+    "social": [
+      { "label": "GitHub", "url": "https://github.com/Leandro096" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/leandrogarciam" }
+    ],
+    "pipeline": {
+      "title": { "en": "GET platform release", "es": "Despliegue de la plataforma GET" },
+      "stages": [
+        { "type": "step", "name": { "en": "Commit pushed", "es": "Commit enviado" }, "meta": "Azure DevOps" },
+        { "type": "step", "name": { "en": "Build", "es": "Compilación" }, "meta": { "en": "Accelerated with Rust", "es": "Acelerada con Rust" } },
+        {
+          "type": "parallel",
+          "label": { "en": "Parallel CI jobs", "es": "Jobs de CI en paralelo" },
+          "jobs": ["Lint", { "en": "Types", "es": "Tipos" }, { "en": "Tests", "es": "Pruebas" }]
+        },
+        { "type": "step", "name": { "en": "Deploy", "es": "Despliegue" }, "meta": { "en": "Automated", "es": "Automatizado" } }
+      ],
+      "result": {
+        "value": "−73%",
+        "label": { "en": "deployment time and errors", "es": "tiempo de despliegue y errores" }
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+---
+import { Iconify } from "../iconify";
+interface Node {
+  title: string;
+  note?: string;
+}
+interface Props {
+  stages: Node[][];
+  label: string;
+}
+const { stages, label } = Astro.props;
+---
+
+<div class="flow" role="group" aria-label={label}>
+  {
+    stages.map((nodes, i) => (
+      <>
+        {i > 0 && (
+          <div class="flow__arrow" aria-hidden="true">
+            <Iconify icon="solar:arrow-right-linear" />
+          </div>
+        )}
+        <div class="flow__stage">
+          {nodes.map((n) => (
+            <div
+              class:list={[
+                "flow__node",
+                { "flow__node--end": i === stages.length - 1 },
+              ]}
+            >
+              <b>{n.title}</b>
+              {n.note && <span>{n.note}</span>}
+            </div>
+          ))}
+        </div>
+      </>
+    ))
+  }
+</div>
+
+<style>
+  .flow {
+    margin-top: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .flow__stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .flow__node {
+    flex: 1;
+    padding: 0.75rem 0.9rem;
+    border-radius: var(--r-md);
+    border: 1px solid var(--line-strong);
+  }
+  .flow__node b {
+    display: block;
+    font-weight: 600;
+  }
+  .flow__node span {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .flow__node--end {
+    border-color: var(--accent);
+  }
+  .flow__arrow {
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+  }
+  .flow__arrow :global(svg) {
+    width: 18px;
+    height: 18px;
+    transform: rotate(90deg);
+  }
+  @media (min-width: 640px) {
+    .flow {
+      flex-direction: row;
+      align-items: stretch;
+    }
+    .flow__arrow :global(svg) {
+      transform: none;
+    }
+  }
+</style>

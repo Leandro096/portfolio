@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Logo from "../components/ui/Logo.astro";
+---
+
+<Layout
+  lang="en"
+  title="Page not found | Leandro J. Garcia"
+  description="This page does not exist."
+  noindex
+>
+  <main class="nf">
+    <Logo size={40} />
+    <h1>Page not found</h1>
+    <p>The address you followed doesn't exist or has moved.</p>
+    <p class="nf__links"><a class="link" href="/">Home</a> · <a class="link" href="/es/">Inicio</a></p>
+  </main>
+</Layout>
+
+<style>
+  .nf {
+    min-height: 100svh;
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    gap: var(--space-4);
+    width: 100%;
+    max-width: 40rem;
+    margin-inline: auto;
+    padding: var(--space-6) var(--gutter);
+  }
+  h1 {
+    font-size: clamp(2rem, 4vw + 1rem, 3rem);
+  }
+  p {
+    color: var(--muted);
+  }
+  a {
+    color: var(--text);
+  }
+</style>

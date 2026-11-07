@@ -1,0 +1,116 @@
+---
+/**
+ * Definition list: label + value pairs. One markup, three presentations:
+ *   meta      three columns, small label above value (hero facts)
+ *   rows      label left, value right, a rule under each row (contact details)
+ *   outcomes  bold lead above a muted description, a rule between entries (case studies)
+ * A value can be a link (`href`) and can carry extra attributes on its <dd> (`attrs`).
+ */
+interface Item {
+  label: string;
+  value: string;
+  href?: string;
+  external?: boolean;
+  attrs?: Record<string, string>;
+}
+interface Props {
+  items: Item[];
+  variant: "meta" | "rows" | "outcomes";
+  class?: string;
+}
+const { items, variant, class: cls } = Astro.props;
+---
+
+<dl class:list={["dl", `dl--${variant}`, cls]}>
+  {
+    items.map((i) => (
+      <div>
+        <dt>{i.label}</dt>
+        <dd {...i.attrs}>
+          {i.href ? (
+            <a
+              class="link"
+              href={i.href}
+              target={i.external ? "_blank" : undefined}
+              rel={i.external ? "noopener noreferrer" : undefined}
+            >
+              {i.value}
+            </a>
+          ) : (
+            i.value
+          )}
+        </dd>
+      </div>
+    ))
+  }
+</dl>
+
+<style>
+  /* meta */
+  .dl--meta {
+    display: grid;
+    gap: var(--space-4) var(--space-6);
+    padding-block: 1.25rem 1.75rem;
+    border-top: 1px solid var(--line-strong);
+  }
+  .dl--meta dt {
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+  .dl--meta dd {
+    margin-top: 0.15rem;
+    font-weight: 500;
+  }
+  @media (min-width: 640px) {
+    .dl--meta {
+      grid-template-columns: repeat(3, auto);
+      justify-content: space-between;
+    }
+  }
+  /* The hero fits one screen: tighten on short desktop windows. */
+  @media (min-width: 1100px) and (max-height: 760px) {
+    .dl--meta {
+      padding-block: 0.8rem 1rem;
+    }
+  }
+
+  /* rows */
+  .dl--rows > div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .dl--rows > div:first-child {
+    padding-top: 0;
+  }
+  .dl--rows dt {
+    color: var(--muted);
+  }
+  .dl--rows dd {
+    margin: 0;
+    font-weight: 500;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+  }
+
+  /* outcomes */
+  .dl--outcomes {
+    margin-top: 1.75rem;
+    border-top: 1px solid var(--line);
+  }
+  .dl--outcomes > div {
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--line);
+    max-width: 64ch;
+  }
+  .dl--outcomes dt {
+    font-weight: 600;
+  }
+  .dl--outcomes dd {
+    margin-top: 0.2rem;
+    color: var(--muted);
+  }
+</style>

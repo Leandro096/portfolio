@@ -1,0 +1,32 @@
+{
+  "order": 1,
+  "type": "job",
+  "role": { "en": "Fullstack Engineer", "es": "Ingeniero Fullstack" },
+  "organization": { "en": "Ministry of Education of the Dominican Republic (MINERD)", "es": "Ministerio de Educación de la República Dominicana (MINERD)" },
+  "location": "Santo Domingo",
+  "start": "2025-08",
+  "end": "2026-10",
+  "highlights": [
+    {
+      "en": "Built and maintained the GET platform (equipment, component and shared-tool management) with ReactJS, ASP.NET and MSSQL; shared components helped converge products.",
+      "es": "Construí y mantuve la plataforma GET (gestión de equipos, componentes y herramientas compartidas) con ReactJS, ASP.NET y MSSQL; los componentes compartidos ayudaron a converger los productos."
+    },
+    {
+      "en": "Built RESTful APIs with ASP.NET Core consumed by React front ends.",
+      "es": "Construí APIs RESTful con ASP.NET Core consumidas por interfaces en React."
+    },
+    {
+      "en": "Designed the CI/CD strategy in Azure DevOps with parallel CI jobs, cutting errors and deployment times by more than 73%; used Rust to speed up builds and MinIO to host documentation.",
+      "es": "Diseñé la estrategia de CI/CD en Azure DevOps con jobs de CI en paralelo, reduciendo los errores y los tiempos de despliegue en más de un 73%; usé Rust para acelerar las compilaciones y MinIO para alojar la documentación."
+    },
+    {
+      "en": "Improved SIGERD database performance with 3NF normalization, stored procedures and indexes.",
+      "es": "Mejoré el rendimiento de la base de datos SIGERD con normalización 3NF, procedimientos almacenados e índices."
+    },
+    {
+      "en": "Built a cross-cutting cookie and consent management tool reused across products.",
+      "es": "Construí una herramienta transversal de gestión de cookies y consentimiento reutilizada en todos los productos."
+    }
+  ],
+  "stack": ["react", "typescript", "aspnet-core", "mssql", "azure-devops", "minio", "rust"]
+}

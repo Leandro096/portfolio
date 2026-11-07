@@ -1,0 +1,87 @@
+---
+import SectionHead from "../ui/SectionHead.astro";
+import TimelineItem from "./TimelineItem.astro";
+import EducationCard from "./EducationCard.astro";
+import { tr, ui, type Lang } from "../../i18n";
+import {
+  getExperience,
+  getEducation,
+  getToolMeta,
+  toolItems,
+  formatPeriod,
+} from "../../lib/content";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+const [jobs, education, names] = await Promise.all([
+  getExperience(),
+  getEducation(),
+  getToolMeta(lang),
+]);
+
+const periodOf = (j: (typeof jobs)[number]["data"]) =>
+  j.start
+    ? formatPeriod(j.start, j.end, t.present, lang)
+    : j.type === "volunteer"
+      ? t.volunteer
+      : "";
+const orgOf = (j: (typeof jobs)[number]["data"]) =>
+  [tr(j.organization, lang), j.location && tr(j.location, lang)]
+    .filter(Boolean)
+    .join(", ");
+---
+
+<section class="section" id="experience">
+  <div class="container split">
+    <SectionHead title={t.experienceTitle} />
+
+    <div>
+      <div class="timeline stack-divided">
+        {
+          jobs.map((j) => (
+            <TimelineItem
+              period={periodOf(j.data)}
+              title={tr(j.data.role, lang)}
+              org={orgOf(j.data)}
+              highlights={j.data.highlights.map((h) => tr(h, lang))}
+              stack={toolItems(j.data.stack, names)}
+            />
+          ))
+        }
+      </div>
+
+      <div class="edu" data-reveal>
+        <h3>{t.educationTitle}</h3>
+        <div class="edu__list">
+          {
+            education.map((e) => (
+              <EducationCard
+                title={tr(e.data.title, lang)}
+                description={tr(e.data.description, lang)}
+                progress={e.data.progress}
+                progressLabel={t.progressAria.replace(
+                  "{n}",
+                  String(Math.round(e.data.progress)),
+                )}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .edu {
+    margin-top: var(--space-block);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--line-strong);
+  }
+  .edu__list {
+    margin-top: var(--space-4);
+  }
+</style>

@@ -1,0 +1,120 @@
+---
+import { Iconify } from "../iconify";
+import DefList from "../ui/DefList.astro";
+import { tr, ui, type Lang } from "../../i18n";
+import { waUrl, type Profile } from "../../lib/content";
+
+interface Props {
+  lang: Lang;
+  profile: Profile;
+}
+const { lang, profile } = Astro.props;
+const t = ui[lang];
+const wa = waUrl(profile.whatsapp, tr(profile.whatsappMessage, lang));
+
+type Row = {
+  label: string;
+  value: string;
+  href?: string;
+  external?: boolean;
+  attrs?: Record<string, string>;
+};
+const rows: Row[] = [
+  {
+    label: t.labelWhatsapp,
+    value: profile.phone,
+    href: waUrl(profile.whatsapp),
+    external: true,
+  },
+  {
+    label: t.labelEmail,
+    value: profile.email,
+    href: `mailto:${profile.email}`,
+  },
+  { label: t.labelTimezones, value: profile.availableTimezones },
+  ...profile.social.map((s) => ({
+    label: s.label,
+    value: new URL(s.url).host,
+    href: s.url,
+    external: true,
+  })),
+  {
+    label: t.labelLocalTime,
+    value: tr(profile.location, lang).split(",")[0],
+    attrs: {
+      id: "clock",
+      "data-tz": profile.timezone,
+      "data-tz-label": profile.timezoneLabel,
+    },
+  },
+];
+---
+
+<section class="section" id="contact">
+  <div class="container contact">
+    <h2>{t.contactTitle}</h2>
+    <div class="contact__grid">
+      <div>
+        <p>{t.contactText}</p>
+        <div class="contact__cta">
+          <a
+            class="btn btn--wa"
+            href={wa}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-wa
+          >
+            <Iconify icon="whatsapp" />
+            {t.whatsappCta}
+          </a>
+          <button
+            class="btn btn--ghost"
+            id="copyEmail"
+            type="button"
+            data-email={profile.email}
+            data-copied={t.copied}
+          >
+            <Iconify icon="solar:copy-linear" />
+            {t.copyEmail}
+          </button>
+        </div>
+      </div>
+
+      <DefList variant="rows" items={rows} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    border-top: 1px solid var(--line-strong);
+    padding-top: var(--space-5);
+  }
+  h2 {
+    font-size: clamp(2rem, 3.4vw + 0.8rem, 3.5rem);
+    letter-spacing: -0.04em;
+    line-height: 1.04;
+    max-width: 20ch;
+  }
+  .contact__grid {
+    display: grid;
+    gap: 2.5rem 4rem;
+    margin-top: clamp(1.75rem, 4vw, 3rem);
+  }
+  @media (min-width: 900px) {
+    .contact__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+  .contact__grid p {
+    color: var(--muted);
+    max-width: 46ch;
+  }
+  .contact__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: 1.75rem;
+  }
+</style>
