@@ -24,8 +24,9 @@ src/
 │  ├─ tool-groups.json    (categorías de habilidades)
 │  ├─ tools.json          (cada herramienta/habilidad; pertenece a un grupo)
 │  ├─ education.json      (estudios y cursos)
-│  ├─ experience/*.json   (1 archivo por trabajo)
-│  └─ projects/*.json     (1 archivo por proyecto/caso de estudio)
+│  ├─ experience.ts       (array `experience`: un objeto por trabajo)
+│  ├─ projects.ts         (array `projects`: un objeto por proyecto/caso de estudio)
+│  └─ types.ts            (tipos de esas entradas; los .ts de datos solo usan `import type`)
 ├─ i18n/ui.ts            ← textos de la INTERFAZ (botones, títulos de sección) EN/ES, con tipos estrictos
 ├─ lib/                   ← content.ts (acceso a datos, tipos Profile/Pipeline), assets.ts (rutas con base), format.ts
 ├─ components/ui/         ← piezas reutilizables sin lógica de datos (Wordmark, DefList, Chips, Metric, FlowDiagram…)
@@ -37,7 +38,7 @@ src/
 ```
 
 Dos mecanismos de traducción a propósito: la **interfaz** vive en `i18n/ui.ts` (código, tipado) y el
-**contenido** en `data/*.json` con `{ "en", "es" }` (datos editables y validados). Ver `docs/ADR/0006-keep-i18n-approach.md`.
+**contenido** en `data/*` (JSON y los arrays `.ts`) con `{ "en", "es" }` (datos editables y validados). Ver `docs/ADR/0006-keep-i18n-approach.md`.
 
 ## Reglas del contenido
 - **Texto traducible** siempre con la misma forma: `{ "en": "…", "es": "…" }`.
@@ -51,8 +52,8 @@ Dos mecanismos de traducción a propósito: la **interfaz** vive en `i18n/ui.ts`
 
 ## Recetas
 
-**Agregar una experiencia:** crea `src/data/experience/mi-empleo.json` (copia uno existente).
-**Agregar un proyecto:** crea `src/data/projects/mi-proyecto.json`. Todo es opcional salvo
+**Agregar una experiencia:** añade un objeto al array de `src/data/experience.ts` (copia uno existente y dale un `id` único).
+**Agregar un proyecto:** añade un objeto al array de `src/data/projects.ts` (con `id` único). Todo es opcional salvo
 `title`, `organization`, `role`, `summary`: `outcomes`, `metrics` (1 = número grande, 2+ = lista),
 `flow` (diagrama de proceso), `links` (botones a demo/repo) y `stack`.
 **Agregar una herramienta:** una línea en `tools.json` con su `group`.
@@ -61,8 +62,10 @@ Dos mecanismos de traducción a propósito: la **interfaz** vive en `i18n/ui.ts`
 
 ## ¿JSON, YAML o Markdown?
 El formato **no cambia nada en los componentes**; el esquema es el mismo.
-- `experience/` y `projects/` aceptan `.json`, `.yaml`, `.toml` **y `.md`** (los campos van en el frontmatter),
-  incluso mezclados en la misma carpeta.
+- `experience.ts` y `projects.ts` son arrays TypeScript que `content.config.ts` entrega a las colecciones con un
+  loader en línea, así que **siguen validados con el mismo esquema Zod** (incluido que cada `stack` exista en
+  `tools.json`). Solo pueden usar `import type`: `make-cv.mjs` los carga con el type-stripping nativo de Node
+  (**Node ≥ 23.6**), que borra los tipos pero no resuelve otros imports.
 - `tools.json`, `education.json`, `tool-groups.json`, `profile.json` usan `file()`;
   para pasarlos a YAML basta cambiar la extensión en `src/content.config.ts`
   (`file('src/data/tools.yaml')`).
@@ -86,7 +89,7 @@ GitHub Pages, etc. (build: `pnpm build`, salida: `dist`).
   ventana corta) con Chrome/Edge; `--compare <A> <B>` las compara por píxeles. Úsalo antes y después de cada refactor visual
   (necesita `pnpm build` previo; `DIST=<carpeta>` sirve otra compilación).
 - `node scripts/make-cv.mjs` regenera los dos CV (`public/CV_Leandro_Garcia_-_English.pdf` y `..._-_Espanol.pdf`) desde una sola fuente:
-  la experiencia sale de `src/data/experience/*.json` (los mismos archivos que muestra el sitio), los datos de contacto de `profile.json`
+  la experiencia sale de `src/data/experience.ts` (el mismo array que muestra el sitio), los datos de contacto de `profile.json`
   y el resto (resumen, educación, habilidades) de `scripts/cv/cv.json`. Así fechas, cifras y viñetas coinciden en el CV en inglés,
   el CV en español y el portafolio. Ejecútalo después de cambiar cualquiera de esos archivos.
 - Decisiones de arquitectura: `docs/ADR/` y plan de ejecución en `docs/PLAN.md`.

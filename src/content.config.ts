@@ -1,6 +1,8 @@
 import { defineCollection, reference } from "astro:content";
-import { glob, file } from "astro/loaders";
+import { file } from "astro/loaders";
 import { z } from "astro/zod";
+import { experience as experienceData } from "./data/experience";
+import { projects as projectsData } from "./data/projects";
 
 const l10n = z.object({ en: z.string(), es: z.string() });
 const text = z.union([z.string(), l10n]);
@@ -61,10 +63,7 @@ const tools = defineCollection({
 });
 
 const experience = defineCollection({
-  loader: glob({
-    pattern: "**/*.{json,yaml,yml,toml,md}",
-    base: "./src/data/experience",
-  }),
+  loader: () => experienceData,
   schema: z.object({
     order,
     type: z.enum(["job", "volunteer"]).default("job"),
@@ -79,10 +78,7 @@ const experience = defineCollection({
 });
 
 const projects = defineCollection({
-  loader: glob({
-    pattern: "**/*.{json,yaml,yml,toml,md}",
-    base: "./src/data/projects",
-  }),
+  loader: () => projectsData,
   schema: z.object({
     order,
     title: l10n,

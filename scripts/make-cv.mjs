@@ -1,13 +1,13 @@
 // Builds the two CVs (public/CV_Leandro_Garcia_-_English.pdf and ..._-_Espanol.pdf) from ONE source,
 // so they cannot drift from each other or from the site:
-//   - experience (roles, organizations, dates, bullets) comes from src/data/experience/*.json, the same
-//     files the portfolio renders;
+//   - experience (roles, organizations, dates, bullets) comes from src/data/experience.ts, the same
+//     array the portfolio renders;
 //   - name, e-mail, phone and location come from src/data/profile.json;
 //   - the rest (summary, education, skills, headings) lives in scripts/cv/cv.json.
 // Run:  node scripts/make-cv.mjs      (needs Chrome or Edge; Calibri/Carlito for the exact look)
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync, readdirSync, writeFileSync, rmSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { existsSync, mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -17,10 +17,9 @@ const json = (...p) => JSON.parse(readFileSync(at(...p), 'utf8'));
 
 const cv = json('scripts', 'cv', 'cv.json');
 const profile = json('src', 'data', 'profile.json').main;
-const jobs = readdirSync(at('src', 'data', 'experience'))
-  .filter((f) => f.endsWith('.json'))
-  .map((f) => ({ id: f.replace(/\.json$/, ''), ...json('src', 'data', 'experience', f) }))
-  .sort((a, b) => a.order - b.order);
+// Node strips the types natively (>= 23.6); src/data/experience.ts only uses `import type`, so it loads as-is.
+const { experience } = await import(pathToFileURL(at('src', 'data', 'experience.ts')).href);
+const jobs = [...experience].sort((a, b) => a.order - b.order);
 
 const tr = (v, lang) => (typeof v === 'string' ? v : v[lang]);
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
