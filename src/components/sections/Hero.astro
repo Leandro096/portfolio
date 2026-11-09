@@ -1,27 +1,41 @@
 ---
-import { Iconify } from '../iconify';
-import PipelineCard from './PipelineCard.astro';
-import DefList from '../ui/DefList.astro';
-import { tr, ui, type Lang } from '../../i18n';
-import { waUrl, type Profile } from '../../lib/content';
+import { Iconify } from "../iconify";
+import PipelineCard from "./PipelineCard.astro";
+import DefList from "../ui/DefList.astro";
+import { tr, ui, type Lang } from "../../i18n";
+import { waUrl, type Profile } from "../../lib/content";
 
-interface Props { lang: Lang; profile: Profile }
+interface Props {
+  lang: Lang;
+  profile: Profile;
+}
 const { lang, profile } = Astro.props;
 const t = ui[lang];
 const facts = [
   { label: t.labelLocation, value: tr(profile.location, lang) },
-  { label: t.labelAvailable, value: `${t.remoteWork}, ${profile.availableTimezones}` },
+  {
+    label: t.labelAvailable,
+    value: `${t.remoteWork}, ${profile.availableTimezones}`,
+  },
   { label: t.labelSpoken, value: tr(profile.spokenLanguages, lang) },
 ];
 ---
+
 <section class="hero" id="top">
+  <canvas class="hero__dither" id="heroDither" aria-hidden="true"></canvas>
   <div class="container hero__inner">
     <div class="hero__grid">
       <div class="hero__copy">
         <h1>{tr(profile.headline, lang)}</h1>
         <p class="hero__lead">{tr(profile.lead, lang)}</p>
         <div class="hero__cta">
-          <a class="btn btn--wa" href={waUrl(profile.whatsapp, tr(profile.whatsappMessage, lang))} target="_blank" rel="noopener noreferrer" data-wa>
+          <a
+            class="btn btn--wa"
+            href={waUrl(profile.whatsapp, tr(profile.whatsappMessage, lang))}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-wa
+          >
             <Iconify icon="whatsapp" />
             {t.whatsappCta}
           </a>
@@ -40,22 +54,98 @@ const facts = [
 </section>
 
 <style>
-  /* The hero is exactly one screen: header + hero = 100svh. */
-  .hero__inner { min-height: calc(100svh - var(--header-h)); display: flex; flex-direction: column; padding-top: clamp(1.5rem, 5vh, 3.5rem); }
-  .hero__grid { flex: 1; display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center; padding-bottom: clamp(2rem, 5vh, 3.5rem); }
-  @media (min-width: 1100px) { .hero__grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); } }
+  .hero {
+    position: relative;
+    isolation: isolate;
+  }
+  .hero__dither {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    -webkit-mask-image: linear-gradient(to right, transparent 22%, #000 58%);
+    mask-image: linear-gradient(to right, transparent 22%, #000 58%);
+  }
+  @media (max-width: 1099px) {
+    .hero__dither {
+      opacity: 0.6;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
 
-  h1 { font-size: clamp(2.25rem, min(4.4vw, 7.4vh), 4rem); font-weight: 700; line-height: 1.04; letter-spacing: -.04em; max-width: 19ch; }
-  .hero__lead { margin-top: clamp(1rem, 2.5vh, 1.5rem); max-width: 54ch; font-size: var(--text-xl); color: var(--muted); }
-  .hero__cta { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: clamp(1.5rem, 3.5vh, 2.25rem); }
+  .hero__copy h1,
+  .hero__copy .hero__lead,
+  .hero :global(.dl--meta) {
+    text-shadow:
+      0 0 3px var(--bg),
+      0 0 8px var(--bg),
+      0 0 16px var(--bg),
+      0 0 28px var(--bg);
+  }
 
-  /* short desktop windows: tighten so the hero still fits one screen */
+  .hero__inner {
+    min-height: calc(100svh - var(--header-h));
+    display: flex;
+    flex-direction: column;
+    padding-top: clamp(1.5rem, 5vh, 3.5rem);
+  }
+  .hero__grid {
+    flex: 1;
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    padding-bottom: clamp(2rem, 5vh, 3.5rem);
+  }
+  @media (min-width: 1100px) {
+    .hero__grid {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    }
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, min(4.4vw, 7.4vh), 4rem);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    max-width: 19ch;
+  }
+  .hero__lead {
+    margin-top: clamp(1rem, 2.5vh, 1.5rem);
+    max-width: 54ch;
+    font-size: var(--text-xl);
+    color: var(--muted);
+  }
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: clamp(1.5rem, 3.5vh, 2.25rem);
+  }
+
   @media (min-width: 1100px) and (max-height: 760px) {
-    .hero__inner { padding-top: var(--space-4); }
-    .hero__grid { padding-bottom: var(--space-4); }
-    h1 { font-size: clamp(2rem, 6.2vh, 3.25rem); }
-    .hero__lead { margin-top: var(--space-3); font-size: 1rem; }
-    .hero__cta { margin-top: 1.1rem; }
-    .btn { min-height: 42px; }
+    .hero__inner {
+      padding-top: var(--space-4);
+    }
+    .hero__grid {
+      padding-bottom: var(--space-4);
+    }
+    h1 {
+      font-size: clamp(2rem, 6.2vh, 3.25rem);
+    }
+    .hero__lead {
+      margin-top: var(--space-3);
+      font-size: 1rem;
+    }
+    .hero__cta {
+      margin-top: 1.1rem;
+    }
+    .btn {
+      min-height: 42px;
+    }
   }
 </style>
