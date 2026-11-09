@@ -5,7 +5,7 @@
     "es": "Sistema de citas para la pastoral de salud de la arquidiócesis"
   },
   "organization": { "en": "The Health Pastoral", "es": "Pastoral de la Salud" },
-  "role": { "en": "Volunteer Fullstack Developer", "es": "Desarrollador Fullstack voluntario" },
+  "role": { "en": "Volunteer Full-Stack Software Engineer", "es": "Ingeniero de Software Full-Stack voluntario" },
   "summary": {
     "en": "Replaced a manual process with a system for the doctors' schedules, built around how patients actually arrive: walk-ins and booked appointments.",
     "es": "Reemplacé un proceso manual con un sistema para las agendas de los médicos, pensado en cómo llegan realmente los pacientes: sin cita y con cita."

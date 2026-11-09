@@ -1,7 +1,7 @@
 {
   "order": 2,
   "type": "job",
-  "role": { "en": "Freelance Fullstack Developer", "es": "Desarrollador Fullstack Freelance" },
+  "role": { "en": "Freelance Full-Stack Software Engineer", "es": "Ingeniero de Software Full-Stack Freelance" },
   "organization": { "en": "Independent", "es": "Independiente" },
   "location": { "en": "Remote / Santo Domingo", "es": "Remoto / Santo Domingo" },
   "start": "2022-08",

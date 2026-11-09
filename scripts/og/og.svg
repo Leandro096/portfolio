@@ -16,10 +16,10 @@
   <text x="150" y="116"><tspan class="w1">leangar</tspan><tspan class="w2">.dev</tspan></text>
   <text class="n" x="68" y="338">Leandro J.</text>
   <text class="n" x="68" y="436">Garcia</text>
-  <text class="r" x="72" y="500">FULL-STACK DEVELOPER</text>
+  <text class="r" x="72" y="500">FULL-STACK SOFTWARE ENGINEER</text>
   <circle cx="934" cy="315" r="187" fill="#0a0f1e" stroke="#38d9f5" stroke-width="6"/>
   
-  <g transform="translate(819 190) scale(1.7692307692307692) translate(-40 -36)">
+  <g transform="translate(830.5 201.76923076923077) scale(1.7692307692307692) translate(-40 -36)">
     <path d="M55 46 H87 V122 H107 V154 H55 Z" fill="#38d9f5" stroke="#38d9f5" stroke-width="6" stroke-linejoin="round"/>
     <rect x="119" y="122" width="26" height="32" rx="4" fill="#5cf2b0"/>
   </g>

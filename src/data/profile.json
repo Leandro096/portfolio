@@ -1,14 +1,14 @@
 {
   "main": {
     "name": "Leandro J. Garcia",
-    "role": { "en": "Full-Stack Developer", "es": "Desarrollador Full-Stack" },
+    "role": { "en": "Full-Stack Software Engineer", "es": "Ingeniero de Software Full-Stack" },
     "description": {
-      "en": "Full-stack developer (React, TypeScript, ASP.NET Core). I build institutional platforms and cut delivery time. Available for remote work in AST / EST / CST.",
-      "es": "Desarrollador full-stack (React, TypeScript, ASP.NET Core). Construyo plataformas institucionales y reduzco los tiempos de entrega. Disponible para trabajo remoto en AST / EST / CST."
+      "en": "Full-stack software engineer (React, TypeScript, ASP.NET Core). I build institutional platforms and cut delivery time. Available for remote work in AST / EST / CST.",
+      "es": "Ingeniero de software full-stack (React, TypeScript, ASP.NET Core). Construyo plataformas institucionales y reduzco los tiempos de entrega. Disponible para trabajo remoto en AST / EST / CST."
     },
     "headline": {
-      "en": "Full-stack developer who ships platforms institutions rely on.",
-      "es": "Desarrollador full-stack que entrega plataformas en las que las instituciones confían."
+      "en": "Full-stack software engineer who ships platforms institutions rely on.",
+      "es": "Ingeniero de software full-stack que entrega plataformas en las que las instituciones confían."
     },
     "lead": {
       "en": "I have 4+ years building production software with ASP.NET Core, React, TypeScript and SQL Server. I designed CI/CD pipelines that cut errors and deployment times by more than 73%, tuned database performance for a national government platform, and delivered freelance systems serving 10,000+ clients per day.",

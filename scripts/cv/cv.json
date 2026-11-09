@@ -1,7 +1,7 @@
 {
   "title": {
-    "en": "Full-Stack Developer | ASP.NET Core · React · TypeScript · Azure DevOps",
-    "es": "Desarrollador Full-Stack | ASP.NET Core · React · TypeScript · Azure DevOps"
+    "en": "Full-Stack Software Engineer | ASP.NET Core · React · TypeScript · Azure DevOps",
+    "es": "Ingeniero de Software Full-Stack | ASP.NET Core · React · TypeScript · Azure DevOps"
   },
   "country": { "en": "Dominican Republic", "es": "República Dominicana" },
   "headings": {
@@ -14,8 +14,8 @@
   "stackLabel": { "en": "Stack", "es": "Stack" },
   "docTitle": { "en": "Leandro J. Garcia - CV (English)", "es": "Leandro J. Garcia - CV (Español)" },
   "summary": {
-    "en": "Full-Stack Developer with 4+ years of experience building production software with ASP.NET Core&nbsp;/&nbsp;.NET, React, TypeScript and SQL Server. Built RESTful APIs and React front ends, designed CI/CD pipelines that cut errors and deployment times by more than 73%, and tuned database performance for a national government platform. Also delivered freelance systems serving 10,000+ clients per day. Communicates in professional English. Available for remote, full-time work as an independent contractor from the Dominican Republic.",
-    "es": "Desarrollador Full-Stack con más de 4 años de experiencia construyendo software de producción con ASP.NET Core&nbsp;/&nbsp;.NET, React, TypeScript y SQL Server. Construí APIs RESTful e interfaces en React, diseñé pipelines de CI/CD que redujeron los errores y los tiempos de despliegue en más de un 73% y optimicé el rendimiento de bases de datos de una plataforma gubernamental nacional. También entregué sistemas freelance que atienden a más de 10,000 clientes por día. Me comunico en inglés profesional. Disponible para trabajo remoto a tiempo completo como contratista independiente desde la República Dominicana."
+    "en": "Full-Stack Software Engineer with 4+ years of experience building production software with ASP.NET Core&nbsp;/&nbsp;.NET, React, TypeScript and SQL Server. Built RESTful APIs and React front ends, designed CI/CD pipelines that cut errors and deployment times by more than 73%, and tuned database performance for a national government platform. Also delivered freelance systems serving 10,000+ clients per day. Communicates in professional English. Available for remote, full-time work as an independent contractor from the Dominican Republic.",
+    "es": "Ingeniero de Software Full-Stack con más de 4 años de experiencia construyendo software de producción con ASP.NET Core&nbsp;/&nbsp;.NET, React, TypeScript y SQL Server. Construí APIs RESTful e interfaces en React, diseñé pipelines de CI/CD que redujeron los errores y los tiempos de despliegue en más de un 73% y optimicé el rendimiento de bases de datos de una plataforma gubernamental nacional. También entregué sistemas freelance que atienden a más de 10,000 clientes por día. Me comunico en inglés profesional. Disponible para trabajo remoto a tiempo completo como contratista independiente desde la República Dominicana."
   },
   "stackLines": {
     "freelance": "ReactJS, ExpressJS, Node.js, MongoDB, .NET, MinIO, Azure DevOps",

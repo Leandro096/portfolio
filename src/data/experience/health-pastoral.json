@@ -1,7 +1,7 @@
 {
   "order": 3,
   "type": "volunteer",
-  "role": { "en": "Fullstack Developer (Volunteer)", "es": "Desarrollador Fullstack (Voluntario)" },
+  "role": { "en": "Full-Stack Software Engineer (Volunteer)", "es": "Ingeniero de Software Full-Stack (Voluntario)" },
   "organization": { "en": "The Health Pastoral", "es": "Pastoral de la Salud" },
   "location": "Santo Domingo",
   "start": "2023-04",

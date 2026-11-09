@@ -42,7 +42,7 @@ export const ui = {
     volunteer: "Volunteer",
     progressAria: "{n}% complete",
 
-    contactTitle: "Need a full-stack developer on your team?",
+    contactTitle: "Need a full-stack software engineer on your team?",
     contactText:
       "Tell me what you're building. WhatsApp is the fastest way to reach me, and email works too.",
     copyEmail: "Copy email address",
@@ -98,7 +98,7 @@ export const ui = {
     volunteer: "Voluntariado",
     progressAria: "{n}% completado",
 
-    contactTitle: "¿Necesitas un desarrollador full-stack en tu equipo?",
+    contactTitle: "¿Necesitas un ingeniero de software full-stack en tu equipo?",
     contactText:
       "Cuéntame qué estás construyendo. WhatsApp es la forma más rápida de contactarme, y el correo también funciona.",
     copyEmail: "Copiar correo",

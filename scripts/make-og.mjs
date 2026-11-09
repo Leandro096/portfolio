@@ -46,7 +46,8 @@ const R = 190,
   CX = 934,
   CY = 315;
 const avatar = `<circle cx="${CX}" cy="${CY}" r="${R - 3}" fill="${C.bg}" stroke="${C.cyan}" stroke-width="6"/>
-  ${mark(CX - 115, CY - 125, 230)}`;
+  ${mark(CX - (58.5 * 230) / 130, CY - (64 * 230) / 130, 230)}`;
+// 58.5 / 64 = centre of the drawn mark (x 12-105, y 7-121) inside its 130 box, so the ink is centred in the ring.
 
 const card = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <style>${fonts}
@@ -60,7 +61,7 @@ const card = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" 
   <text x="150" y="116"><tspan class="w1">leangar</tspan><tspan class="w2">.dev</tspan></text>
   <text class="n" x="68" y="338">Leandro J.</text>
   <text class="n" x="68" y="436">Garcia</text>
-  <text class="r" x="72" y="500">FULL-STACK DEVELOPER</text>
+  <text class="r" x="72" y="500">FULL-STACK SOFTWARE ENGINEER</text>
   ${avatar}
 </svg>`;
 
