@@ -34,6 +34,51 @@
       { "label": "GitHub", "url": "https://github.com/Leandro096" },
       { "label": "LinkedIn", "url": "https://www.linkedin.com/in/leandrogarciam" }
     ],
+    "seo": {
+      "title": {
+        "en": "Leandro J. Garcia | Full-Stack Software Engineer, Santo Domingo",
+        "es": "Leandro J. Garcia | Ingeniero de Software Full-Stack, Santo Domingo"
+      },
+      "description": {
+        "en": "Full-stack software engineer in Santo Domingo, Dominican Republic. ASP.NET Core, React, TypeScript and SQL Server. Remote for US teams (AST / EST / CST).",
+        "es": "Ingeniero de software full-stack en Santo Domingo, RD. ASP.NET Core, React, TypeScript y SQL Server. Remoto para equipos de EE. UU. (AST / EST / CST)."
+      },
+      "about": {
+        "en": "Full-stack software engineer based in Santo Domingo, Dominican Republic, working remotely with US teams.",
+        "es": "Ingeniero de software full-stack en Santo Domingo, República Dominicana, con trabajo remoto para equipos de EE. UU."
+      },
+      "city": { "en": "Santo Domingo", "es": "Santo Domingo" },
+      "country": { "en": "Dominican Republic", "es": "República Dominicana" },
+      "countryCode": "DO",
+      "alternateNames": ["Leandro Garcia", "Leandro García"],
+      "alsoKnownAs": {
+        "en": [
+          "Software Engineer",
+          "Software Developer",
+          "Full-Stack Developer",
+          "Web Application Developer",
+          "Backend and API Developer",
+          ".NET Developer",
+          "React Developer",
+          "Digital Solutions Architecture"
+        ],
+        "es": [
+          "Ingeniero de software",
+          "Desarrollador de software",
+          "Programador",
+          "Desarrollador full-stack",
+          "Desarrollador de aplicaciones web",
+          "Desarrollador backend y de APIs",
+          "Desarrollador .NET",
+          "Desarrollador React",
+          "Arquitectura de soluciones digitales"
+        ]
+      },
+      "expertise": {
+        "en": ["Software architecture", "Digital solutions design", "REST API design", "Database design and performance tuning", "CI/CD pipelines", "Government and institutional platforms"],
+        "es": ["Arquitectura de software", "Diseño de soluciones digitales", "Diseño de APIs REST", "Diseño y optimización de bases de datos", "Pipelines de CI/CD", "Plataformas gubernamentales e institucionales"]
+      }
+    },
     "pipeline": {
       "title": { "en": "GET platform release", "es": "Despliegue de la plataforma GET" },
       "stages": [

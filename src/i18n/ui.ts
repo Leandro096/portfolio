@@ -53,6 +53,7 @@ export const ui = {
     labelLocalTime: "Local time",
 
     rights: "All rights reserved.",
+    alsoLabel: "Also described as:",
     backToTop: "Back to top",
   },
   es: {
@@ -98,7 +99,8 @@ export const ui = {
     volunteer: "Voluntariado",
     progressAria: "{n}% completado",
 
-    contactTitle: "¿Necesitas un ingeniero de software full-stack en tu equipo?",
+    contactTitle:
+      "¿Necesitas un ingeniero de software full-stack en tu equipo?",
     contactText:
       "Cuéntame qué estás construyendo. WhatsApp es la forma más rápida de contactarme, y el correo también funciona.",
     copyEmail: "Copiar correo",
@@ -109,6 +111,7 @@ export const ui = {
     labelLocalTime: "Hora local",
 
     rights: "Todos los derechos reservados.",
+    alsoLabel: "También descrito como:",
     backToTop: "Volver arriba",
   },
 } as const;

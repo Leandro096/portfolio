@@ -72,6 +72,15 @@ El formato **no cambia nada en los componentes**; el esquema es el mismo.
 - Recomendación: **JSON/YAML** mientras todo sea dato corto en dos idiomas;
   **Markdown** solo si más adelante agregas texto largo (artículos, casos de estudio extensos).
 
+## SEO y visibilidad en IA
+Todo sale de `profile.json` → `seo` (título, descripción, frase visible, ciudad, nombres alternos, "también descrito como"
+y áreas de especialidad) y de los mismos datos de experiencia/proyectos; no hay nada duplicado a mano.
+- **Meta tags y JSON-LD** (`WebSite` + `ProfilePage` + `Person`): `Layout.astro` y `lib/seo.ts`. Sin email ni teléfono a propósito.
+- **`/robots.txt`**: `pages/robots.txt.ts`; permite explícitamente buscadores y rastreadores de IA (OpenAI, Anthropic, Perplexity, Google…).
+- **`/sitemap.xml`**: `pages/sitemap.xml.ts`, con alternates `hreflang` EN/ES.
+- **`/llms.txt` y `/llms-full.txt`**: `lib/llms.ts`; resumen y perfil completo en Markdown (EN y ES) generados al compilar.
+- Para añadir otra forma de describir tu rol, edita `seo.alsoKnownAs` (aparece en el footer, JSON-LD y `llms.txt`).
+
 ## Agregar un tercer idioma
 1. `src/i18n/index.ts` → agrégalo en `languages`.
 2. `src/i18n/ui.ts` → copia el bloque `es` con el nuevo código.

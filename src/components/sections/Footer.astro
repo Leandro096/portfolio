@@ -1,6 +1,6 @@
 ---
 import Wordmark from "../ui/Wordmark.astro";
-import { ui, type Lang } from "../../i18n";
+import { tr, ui, type Lang } from "../../i18n";
 import type { Profile } from "../../lib/content";
 interface Props {
   lang: Lang;
@@ -12,11 +12,18 @@ const t = ui[lang];
 
 <footer class="site-footer">
   <div class="container">
+    <div class="about">
+      <p>{tr(profile.seo.about, lang)}</p>
+      <p class="also">
+        {t.alsoLabel}
+        {profile.seo.alsoKnownAs[lang].join(" · ")}
+      </p>
+    </div>
     <p class="sign">
       <Wordmark size="sm" />
       <span
         >© <span id="year">{new Date().getFullYear()}</span>
-        {' '}{profile.name}. {t.rights}</span
+        {" "}{profile.name}. {t.rights}</span
       >
     </p>
     <a class="to-top" href="#top">{t.backToTop}</a>
@@ -35,6 +42,16 @@ const t = ui[lang];
     align-items: center;
     justify-content: space-between;
     gap: var(--space-4);
+  }
+  .about {
+    flex-basis: 100%;
+    max-width: 70ch;
+    display: grid;
+    gap: var(--space-2);
+  }
+  .also {
+    font-size: var(--text-sm);
+    opacity: 0.85;
   }
   .sign {
     display: flex;

@@ -37,6 +37,20 @@ const profile = defineCollection({
     availableTimezones: z.string(),
     cv: l10n,
     social: z.array(z.object({ label: z.string(), url: z.url() })).default([]),
+    seo: z.object({
+      title: l10n,
+      description: l10n,
+      about: l10n,
+      city: l10n,
+      country: l10n,
+      countryCode: z.string().length(2),
+      alternateNames: z.array(z.string()).default([]),
+      alsoKnownAs: z.object({
+        en: z.array(z.string()),
+        es: z.array(z.string()),
+      }),
+      expertise: z.object({ en: z.array(z.string()), es: z.array(z.string()) }),
+    }),
     pipeline: z.object({
       title: l10n,
       stages: z.array(pipelineStage).min(1),

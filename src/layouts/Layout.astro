@@ -8,14 +8,16 @@ import "../styles/utilities.css";
 import "../styles/components.css";
 import { asset } from "../lib/assets";
 import { langs, homePath, defaultLang, type Lang } from "../i18n";
+import { jsonForScript } from "../lib/seo";
 
 interface Props {
   lang: Lang;
   title: string;
   description: string;
   noindex?: boolean;
+  jsonLd?: object;
 }
-const { lang, title, description, noindex = false } = Astro.props;
+const { lang, title, description, noindex = false, jsonLd } = Astro.props;
 
 const site = Astro.site ?? new URL(Astro.url.origin);
 const canonical = new URL(homePath(lang), site).href;
@@ -25,6 +27,7 @@ const alternates = langs.map((l) => ({
 }));
 const ogImage = new URL("og.png", site).href;
 const ogLocale = lang === "es" ? "es_DO" : "en_US";
+const ogLocaleAlt = lang === "es" ? "en_US" : "es_DO";
 ---
 
 <!doctype html>
@@ -52,15 +55,8 @@ const ogLocale = lang === "es" ? "es_DO" : "en_US";
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0A0F1E" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href={asset("favicon.svg")}
-    />
-    <link
-      rel="apple-touch-icon"
-      href={asset("apple-touch-icon.png")}
-    />
+    <link rel="icon" type="image/svg+xml" href={asset("favicon.svg")} />
+    <link rel="apple-touch-icon" href={asset("apple-touch-icon.png")} />
     <link rel="canonical" href={canonical} />
     {
       alternates.map((a) => (
@@ -78,6 +74,7 @@ const ogLocale = lang === "es" ? "es_DO" : "en_US";
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlt} />
     <meta property="og:site_name" content="leangar.dev" />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
@@ -90,7 +87,27 @@ const ogLocale = lang === "es" ? "es_DO" : "en_US";
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    {noindex && <meta name="robots" content="noindex" />}
+    {
+      noindex ? (
+        <meta name="robots" content="noindex" />
+      ) : (
+        <meta
+          name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+      )
+    }
+    <link
+      rel="alternate"
+      type="text/plain"
+      href={new URL("llms.txt", site).href}
+      title="LLM-readable summary"
+    />
+    {
+      jsonLd && (
+        <script type="application/ld+json" set:html={jsonForScript(jsonLd)} />
+      )
+    }
 
     <script
       is:inline

@@ -1,25 +1,39 @@
 ---
-/**
- * The whole page. Both /index.astro (EN) and /es/index.astro (ES) render this
- * component with a different `lang`. To add/remove/reorder sections, edit here.
- */
-import Layout from '../../layouts/Layout.astro';
-import Header from './Header.astro';
-import Hero from './Hero.astro';
-import Projects from './Projects.astro';
-import Skills from './Skills.astro';
-import Experience from './Experience.astro';
-import Contact from './Contact.astro';
-import Footer from './Footer.astro';
-import { tr, ui, type Lang } from '../../i18n';
-import { getProfile } from '../../lib/content';
+import Layout from "../../layouts/Layout.astro";
+import Header from "./Header.astro";
+import Hero from "./Hero.astro";
+import Projects from "./Projects.astro";
+import Skills from "./Skills.astro";
+import Experience from "./Experience.astro";
+import Contact from "./Contact.astro";
+import Footer from "./Footer.astro";
+import { tr, ui, type Lang } from "../../i18n";
+import { getProfile, getToolGroups } from "../../lib/content";
+import { buildJsonLd } from "../../lib/seo";
 
-interface Props { lang: Lang }
+interface Props {
+  lang: Lang;
+}
 const { lang } = Astro.props;
 const profile = await getProfile();
 const t = ui[lang];
+const skills = (await getToolGroups(lang)).flatMap((g) =>
+  g.items.map((i) => i.name),
+);
+const jsonLd = buildJsonLd({
+  profile,
+  lang,
+  site: Astro.site ?? new URL(Astro.url.origin),
+  skills,
+});
 ---
-<Layout lang={lang} title={`${profile.name} | ${tr(profile.role, lang)}`} description={tr(profile.description, lang)}>
+
+<Layout
+  lang={lang}
+  title={tr(profile.seo.title, lang)}
+  description={tr(profile.seo.description, lang)}
+  jsonLd={jsonLd}
+>
   <a class="skip-link" href="#main">{t.skip}</a>
 
   <Header lang={lang} profile={profile} />
@@ -35,16 +49,25 @@ const t = ui[lang];
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    import '../../scripts/main';
+    import "../../scripts/main";
   </script>
 </Layout>
 
 <style is:global>
   .skip-link {
-    position: fixed; left: 1rem; top: -4rem; z-index: 100;
-    background: var(--accent); color: var(--on-accent);
-    padding: .7rem 1rem; border-radius: var(--r-md); font-weight: 600; text-decoration: none;
-    transition: top .2s var(--ease);
+    position: fixed;
+    left: 1rem;
+    top: -4rem;
+    z-index: 100;
+    background: var(--accent);
+    color: var(--on-accent);
+    padding: 0.7rem 1rem;
+    border-radius: var(--r-md);
+    font-weight: 600;
+    text-decoration: none;
+    transition: top 0.2s var(--ease);
   }
-  .skip-link:focus { top: 1rem; }
+  .skip-link:focus {
+    top: 1rem;
+  }
 </style>
