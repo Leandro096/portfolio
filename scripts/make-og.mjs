@@ -87,11 +87,11 @@ if (!browser)
     "No Chrome/Edge found. Set CHROME_PATH or export scripts/og/*.svg manually.",
   );
 
-const render = (svg, w, h, out) => {
+const render = (svg, w, h, out, transparent = false) => {
   const html = join(tmpdir(), `og-${Date.now()}.html`);
   writeFileSync(
     html,
-    `<!doctype html><meta charset="utf-8"><style>html,body{margin:0;background:#0a0f1e}svg{display:block}</style>${svg}`,
+    `<!doctype html><meta charset="utf-8"><style>html,body{margin:0;background:${transparent ? "transparent" : "#0a0f1e"}}svg{display:block}</style>${svg}`,
   );
   execFileSync(
     browser,
@@ -99,6 +99,7 @@ const render = (svg, w, h, out) => {
       "--headless",
       "--disable-gpu",
       "--hide-scrollbars",
+      ...(transparent ? ["--default-background-color=00000000"] : []),
       "--force-device-scale-factor=1",
       `--window-size=${w},${h}`,
       "--virtual-time-budget=2000",
@@ -113,12 +114,13 @@ render(card, 1200, 630, at("public", "og.png"));
 render(icon, 180, 180, at("public", "apple-touch-icon.png"));
 
 const favSvg = (size) =>
-  readFileSync(at("public", "favicon.svg"), "utf8")
-    .replace(' rx="44"', "")
-    .replace("<svg ", `<svg width="${size}" height="${size}" `);
-render(favSvg(192), 192, 192, at("public", "icon-192.png"));
+  readFileSync(at("public", "favicon.svg"), "utf8").replace(
+    "<svg ",
+    `<svg width="${size}" height="${size}" `,
+  );
+render(favSvg(192), 192, 192, at("public", "icon-192.png"), true);
 const png48 = join(tmpdir(), `favicon-48-${Date.now()}.png`);
-render(favSvg(48), 48, 48, png48);
+render(favSvg(48), 48, 48, png48, true);
 const png = readFileSync(png48);
 const ico = Buffer.alloc(22 + png.length);
 ico.writeUInt16LE(0, 0);
