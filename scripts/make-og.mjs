@@ -42,26 +42,28 @@ const mark = (x, y, s) => `
   </g>`;
 
 // Brand avatar ("Foto de perfil"): circle with a 6px cyan ring, logo mark inside.
-const R = 190,
-  CX = 934,
-  CY = 315;
+const R = 150,
+  CX = 990,
+  CY = 330,
+  S = 182; // logo size inside the ring
 const avatar = `<circle cx="${CX}" cy="${CY}" r="${R - 3}" fill="${C.bg}" stroke="${C.cyan}" stroke-width="6"/>
-  ${mark(CX - (58.5 * 230) / 130, CY - (64 * 230) / 130, 230)}`;
+  ${mark(CX - (58.5 * S) / 130, CY - (64 * S) / 130, S)}`;
 // 58.5 / 64 = centre of the drawn mark (x 12-105, y 7-121) inside its 130 box, so the ink is centred in the ring.
 
 const card = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <style>${fonts}
-    .n { font-family: SG, sans-serif; font-weight: 700; font-size: 96px; letter-spacing: -3px; fill: ${C.text}; }
+    .n { font-family: SG, sans-serif; font-weight: 700; font-size: 88px; letter-spacing: -2.6px; fill: ${C.text}; }
     .r { font-family: JB, monospace; font-weight: 500; font-size: 21px; letter-spacing: 3px; fill: ${C.cyan}; }
     .w1 { font-family: SG, sans-serif; font-weight: 700; font-size: 46px; letter-spacing: -1.2px; fill: ${C.text}; }
     .w2 { font-family: JB, monospace; font-weight: 500; font-size: 31px; fill: ${C.mint}; }
+    .s { font-family: JB, monospace; font-weight: 500; font-size: 19px; letter-spacing: 2px; fill: ${C.muted}; }
   </style>
   <rect width="1200" height="630" fill="${C.bg}"/>
   ${mark(72, 62, 64)}
   <text x="150" y="116"><tspan class="w1">leangar</tspan><tspan class="w2">.dev</tspan></text>
-  <text class="n" x="68" y="338">Leandro J.</text>
-  <text class="n" x="68" y="436">Garcia</text>
-  <text class="r" x="72" y="500">FULL-STACK SOFTWARE ENGINEER</text>
+  <text class="n" x="68" y="352">Leandro J. Garcia</text>
+  <text class="r" x="72" y="412">FULL-STACK SOFTWARE ENGINEER</text>
+  <text class="s" x="72" y="456">ASP.NET CORE · REACT · TYPESCRIPT</text>
   ${avatar}
 </svg>`;
 
