@@ -41,14 +41,12 @@ const mark = (x, y, s) => `
     <rect x="119" y="122" width="26" height="32" rx="4" fill="${C.mint}"/>
   </g>`;
 
-// Brand avatar ("Foto de perfil"): circle with a 6px cyan ring, logo mark inside.
 const R = 150,
   CX = 990,
   CY = 330,
-  S = 182; // logo size inside the ring
+  S = 182;
 const avatar = `<circle cx="${CX}" cy="${CY}" r="${R - 3}" fill="${C.bg}" stroke="${C.cyan}" stroke-width="6"/>
   ${mark(CX - (58.5 * S) / 130, CY - (64 * S) / 130, S)}`;
-// 58.5 / 64 = centre of the drawn mark (x 12-105, y 7-121) inside its 130 box, so the ink is centred in the ring.
 
 const card = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <style>${fonts}
@@ -113,4 +111,28 @@ const render = (svg, w, h, out) => {
 
 render(card, 1200, 630, at("public", "og.png"));
 render(icon, 180, 180, at("public", "apple-touch-icon.png"));
-console.log("public/og.png and public/apple-touch-icon.png written.");
+
+const favSvg = (size) =>
+  readFileSync(at("public", "favicon.svg"), "utf8")
+    .replace(' rx="44"', "")
+    .replace("<svg ", `<svg width="${size}" height="${size}" `);
+render(favSvg(192), 192, 192, at("public", "icon-192.png"));
+const png48 = join(tmpdir(), `favicon-48-${Date.now()}.png`);
+render(favSvg(48), 48, 48, png48);
+const png = readFileSync(png48);
+const ico = Buffer.alloc(22 + png.length);
+ico.writeUInt16LE(0, 0);
+ico.writeUInt16LE(1, 2);
+ico.writeUInt16LE(1, 4);
+ico.writeUInt8(48, 6);
+ico.writeUInt8(48, 7);
+ico.writeUInt16LE(1, 10);
+ico.writeUInt16LE(32, 12);
+ico.writeUInt32LE(png.length, 14);
+ico.writeUInt32LE(22, 18);
+png.copy(ico, 22);
+writeFileSync(at("public", "favicon.ico"), ico);
+
+console.log(
+  "public/og.png, apple-touch-icon.png, icon-192.png and favicon.ico written.",
+);

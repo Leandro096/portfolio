@@ -55,7 +55,19 @@ const ogLocaleAlt = lang === "es" ? "en_US" : "es_DO";
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0A0F1E" />
-    <link rel="icon" type="image/svg+xml" href={asset("favicon.svg")} />
+    <link rel="icon" href={asset("favicon.ico")} sizes="48x48" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={asset("favicon.svg")}
+      sizes="any"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href={asset("icon-192.png")}
+      sizes="192x192"
+    />
     <link rel="apple-touch-icon" href={asset("apple-touch-icon.png")} />
     <link rel="canonical" href={canonical} />
     {
