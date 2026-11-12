@@ -10,9 +10,9 @@
   { "id": "cross-browser", "concept": true, "group": "frontend", "order": 9, "name": { "en": "Cross-browser compatibility", "es": "Compatibilidad entre navegadores" } },
 
   { "id": "aspnet-core", "group": "backend", "order": 1, "name": "ASP.NET Core / .NET", "logo": "aspnet-core" },
-  { "id": "csharp", "group": "backend", "order": 1.5, "name": "C#" },
+  { "id": "csharp", "group": "backend", "order": 1.5, "name": "C#", "logo": "csharp" },
   { "id": "nodejs", "group": "backend", "order": 3, "name": "Node.js", "logo": "nodejs" },
-  { "id": "python", "group": "backend", "order": 3.5, "name": "Python" },
+  { "id": "python", "group": "backend", "order": 3.5, "name": "Python", "logo": "python" },
   { "id": "expressjs", "group": "backend", "order": 2, "name": "ExpressJS", "logo": "expressjs", "logoDark": true },
   { "id": "rest-apis", "concept": true, "group": "backend", "order": 6, "name": { "en": "RESTful APIs", "es": "APIs RESTful" } },
   { "id": "mssql", "group": "backend", "order": 4, "name": "SQL / MSSQL", "logo": "mssql" },
